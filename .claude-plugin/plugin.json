@@ -1,0 +1,12 @@
+{
+  "name": "save-conversation-to-obsidian",
+  "displayName": "Save Conversation to Obsidian",
+  "version": "1.0.0",
+  "description": "Save a structured summary of the current conversation as a Markdown note in your Obsidian vault, with project routing, Mermaid diagrams and a usage estimate.",
+  "author": {
+    "name": "Stefan Lago"
+  },
+  "repository": "https://github.com/Friendship7/save-conversation-to-obsidian",
+  "license": "MIT",
+  "keywords": ["obsidian", "notes", "conversation", "summary", "knowledge-management"]
+}

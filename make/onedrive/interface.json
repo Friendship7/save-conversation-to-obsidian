@@ -1,0 +1,55 @@
+{
+  "input": [
+    {
+      "name": "path",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "method",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "header",
+      "type": "array",
+      "required": false,
+      "spec": [
+        {
+          "name": "key",
+          "type": "text"
+        },
+        {
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "qs",
+      "type": "array",
+      "required": false,
+      "spec": [
+        {
+          "name": "key",
+          "type": "text"
+        },
+        {
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "body",
+      "type": "any",
+      "required": false
+    }
+  ],
+  "output": [
+    {
+      "name": "data",
+      "type": "any"
+    }
+  ]
+}

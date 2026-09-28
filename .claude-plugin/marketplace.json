@@ -1,0 +1,14 @@
+{
+  "name": "obsidian-conversation",
+  "description": "Save AI conversations as structured notes in your Obsidian vault.",
+  "owner": {
+    "name": "Stefan Lago"
+  },
+  "plugins": [
+    {
+      "name": "save-conversation-to-obsidian",
+      "source": "./",
+      "description": "Save a structured summary of the current conversation as a Markdown note in your Obsidian vault."
+    }
+  ]
+}

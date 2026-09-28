@@ -1,0 +1,55 @@
+{
+  "name": "Obsidian vault: OneDrive API shell",
+  "flow": [
+    {
+      "id": 1,
+      "module": "scenario-service:StartSubscenario",
+      "version": 2
+    },
+    {
+      "id": 2,
+      "module": "onedrive:makeApiCall",
+      "version": 2,
+      "parameters": {},
+      "mapper": {
+        "url": "{{1.path}}",
+        "method": "{{1.method}}",
+        "headers": "{{1.header}}",
+        "qs": "{{1.qs}}",
+        "body": "{{1.body}}"
+      }
+    },
+    {
+      "id": 3,
+      "module": "scenario-service:ReturnData",
+      "version": 2,
+      "mapper": {
+        "data": "{{2.body}}"
+      },
+      "metadata": {
+        "expect": [
+          {
+            "name": "data",
+            "type": "any"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false,
+      "confidential": true,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    }
+  }
+}

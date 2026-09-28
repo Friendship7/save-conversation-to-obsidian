@@ -1,0 +1,31 @@
+# Example configuration for save-conversation-to-obsidian.
+# Every field is explained in skills/save-conversation-to-obsidian/references/config-schema.md
+
+obsidian-conversation-config:
+  vault_name: "MyVault"
+  timezone: "Europe/Zurich"
+  vault_roots:
+    windows: 'C:\Users\me\Obsidian\MyVault'
+    macos: ""
+    linux: ""
+    android: "/storage/emulated/0/Documents/MyVault"
+    ios: ""
+  sync:
+    method: "onedrive"
+    cloud_path: "/Obsidian/MyVault"
+    connector_verified: false
+  make:
+    enabled: true
+    declined: false
+    scenario: "Obsidian vault: OneDrive API shell"
+    variant: "onedrive-api-shell"
+  folders:
+    default: "Inbox/Conversations"
+    projects_root: "Projects"
+    project_subfolder: "Conversations"
+    known_projects: ["MyApp", "Writing", "Research"]
+  note:
+    filename: "YYYY-MM-DD {Topic}.md"
+    usage: true
+    diagrams: true
+    extra_tags: []
