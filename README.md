@@ -41,10 +41,10 @@ tags:
 We tracked down why edits made offline were overwritten after reconnecting ...
 
 ## Key decisions
-- \*\*Last-writer-wins replaced by field-level merge\*\* — keeps offline edits
+- \\\\\\\*\\\\\\\*Last-writer-wins replaced by field-level merge\\\\\\\*\\\\\\\* — keeps offline edits
 
 ## Action items
-- \[ ] Add a migration for existing conflict records
+- \\\\\\\[ ] Add a migration for existing conflict records
 ```
 
 ### Features
@@ -65,20 +65,20 @@ Every run has two parts that never block each other: **write the note** (always 
 
 ```mermaid
 flowchart TD
-    U\["You: save this to Obsidian"] --> CFG{"Configuration<br>found?"}
-    CFG -->|no| SETUP\["First-run setup<br>(a few questions)"]
-    CFG -->|yes| NOTE\["Write the note"]
+    U\\\\\\\["You: save this to Obsidian"] --> CFG{"Configuration<br>found?"}
+    CFG -->|no| SETUP\\\\\\\["First-run setup<br>(a few questions)"]
+    CFG -->|yes| NOTE\\\\\\\["Write the note"]
     SETUP --> NOTE
     NOTE --> A{"Local file access?"}
-    A -->|yes| RA\["A: write into the vault folder"]
+    A -->|yes| RA\\\\\\\["A: write into the vault folder"]
     A -->|no| B{"Linked computer?"}
-    B -->|yes| RB\["B: write on the computer"]
+    B -->|yes| RB\\\\\\\["B: write on the computer"]
     B -->|no| C{"Make scenario<br>for your cloud drive?"}
-    C -->|yes| RC\["C: write into OneDrive,<br>Google Drive or Dropbox"]
+    C -->|yes| RC\\\\\\\["C: write into OneDrive,<br>Google Drive or Dropbox"]
     C -->|no| D{"File download<br>possible?"}
-    D -->|yes| RD\["D: download the .md file"]
-    D -->|no| RE\["E: copy the Markdown"]
-    RA --> SYNC\["Your sync delivers it<br>to all devices"]
+    D -->|yes| RD\\\\\\\["D: download the .md file"]
+    D -->|no| RE\\\\\\\["E: copy the Markdown"]
+    RA --> SYNC\\\\\\\["Your sync delivers it<br>to all devices"]
     RB --> SYNC
     RC --> SYNC
 ```
@@ -95,12 +95,12 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    P{"Project routing<br>configured?"} -->|no| DEF\["Default folder<br>e.g. Conversations/"]
+    P{"Project routing<br>configured?"} -->|no| DEF\\\\\\\["Default folder<br>e.g. Conversations/"]
     P -->|yes| N{"Chat belongs to a project?<br>Claude Project, ChatGPT Project,<br>Gemini Gem, repo"}
     N -->|no| DEF
     N -->|yes| M{"Matching folder<br>in the projects folder?"}
-    M -->|one| PF\["Projects/Name/Conversations/"]
-    M -->|several| ASK\["Ask you"]
+    M -->|one| PF\\\\\\\["Projects/Name/Conversations/"]
+    M -->|several| ASK\\\\\\\["Ask you"]
     M -->|none| DEF
 ```
 
@@ -138,7 +138,7 @@ The skill lives in [`skills/save-conversation-to-obsidian/`](skills/save-convers
 |Assistant|How to install|
 |-|-|
 |**Claude** (web, desktop, mobile)|Download `save-conversation-to-obsidian.zip` from the [latest release](../../releases/latest) and upload it in Claude's settings under *Skills*. Skills sync to all your Claude apps.|
-|**Claude Code**|As a plugin: `/plugin marketplace add Friendship7/save-conversation-to-obsidian`, then `/plugin install save-conversation-to-obsidian@obsidian-conversation`. Or copy the skill folder to `\~/.claude/skills/`.|
+|**Claude Code**|As a plugin: `/plugin marketplace add Friendship7/save-conversation-to-obsidian`, then `/plugin install save-conversation-to-obsidian@obsidian-conversation`. Or copy the skill folder to `\\\\\\\~/.claude/skills/`.|
 |**ChatGPT**|If your plan offers skills, upload the ZIP. Otherwise add `SKILL.md` and the two files from `references/` to a Project's files and put this in the project instructions: *"When I ask to save the conversation to Obsidian, follow SKILL.md."*|
 |**Gemini**|Create a Gem, add the same three files as knowledge and use the same instruction.|
 |**Codex CLI, Gemini CLI and other agents**|Put the skill folder in your repo or home folder and reference it from `AGENTS.md` / `GEMINI.md` with the same instruction.|
@@ -153,14 +153,14 @@ The first time you say *"save this to Obsidian"*, the assistant asks a few quest
 
 ```mermaid
 flowchart TD
-    S\["First save request"] --> Q1\["Vault name, folder per device,<br>sync method, cloud path"]
-    Q1 --> Q2\["Default folder,<br>optional project routing"]
-    Q2 --> Q3\["Usage estimate and<br>diagrams on/off"]
+    S\\\\\\\["First save request"] --> Q1\\\\\\\["Vault name, folder per device,<br>sync method, cloud path"]
+    Q1 --> Q2\\\\\\\["Default folder,<br>optional project routing"]
+    Q2 --> Q3\\\\\\\["Usage estimate and<br>diagrams on/off"]
     Q3 --> R{"Best write route<br>on this device?"}
-    R -->|"download or copy only,<br>vault in a cloud drive"| MK\["Offer the Make setup<br>(optional, free)"]
+    R -->|"download or copy only,<br>vault in a cloud drive"| MK\\\\\\\["Offer the Make setup<br>(optional, free)"]
     R -->|"good route available"| SAVE
-    MK --> SAVE\["Store configuration:<br>memory, vault note, skill copy"]
-    SAVE --> RUN\["Save the note"]
+    MK --> SAVE\\\\\\\["Store configuration:<br>memory, vault note, skill copy"]
+    SAVE --> RUN\\\\\\\["Save the note"]
 ```
 
 The configuration is stored wherever possible, so you are only asked once: in the assistant's **memory** (if it has memory and you agree), as `save-conversation-config.md` in your **vault root** (if the assistant can write there), or in the **Configuration** block at the end of `SKILL.md`. It holds only names, paths and switches, never passwords or tokens.
@@ -169,7 +169,7 @@ Every field is explained in the [configuration reference](skills/save-conversati
 
 \---
 
-## Saving from your phone: the Make route
+## Saving from your phone or tablet: the Make route
 
 If your vault syncs through **OneDrive, Google Drive or Dropbox**, a free [Make](https://www.make.com) account turns phone saves into direct saves: the assistant calls a small Make scenario, the scenario writes the note into your cloud drive, and your normal sync does the rest.
 
@@ -216,4 +216,10 @@ Issues and pull requests are welcome, especially Make scenarios for other storag
 ## License
 
 MIT, see [`LICENSE`](LICENSE).
+
+## Other interesting Obsidan helpers from Friendship7
+
+### SketchAlchemy
+
+[SketchAlchemy](https://sketchalchemy.io) is an AI-tool that can convert your handwritten notes and sketches, as well as pictures of whiteboards into clean editable and searchable Excalidraw scenes and/or Obsidian/Excalidraw notes.
 
