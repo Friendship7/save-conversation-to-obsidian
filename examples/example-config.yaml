@@ -24,6 +24,8 @@ obsidian-conversation-config:
     projects_root: "Projects"
     project_subfolder: "Conversations"
     known_projects: ["MyApp", "Writing", "Research"]
+  pricing:
+    max_age_days: 7
   note:
     filename: "YYYY-MM-DD {Topic}.md"
     usage: true

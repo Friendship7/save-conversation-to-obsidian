@@ -30,6 +30,8 @@ It can live in three places; the skill reads them in this order and uses the fir
 | `folders.projects_root` | path | empty | Vault-relative parent folder with one subfolder per project. Empty turns project routing off. |
 | `folders.project_subfolder` | text | `Conversations` | Subfolder inside a project folder where notes go. |
 | `folders.known_projects` | list | `[]` | Last known project folder names; used when the vault can't be listed live (download and copy routes). The skill refreshes it when it can list the folder. |
+| `pricing.max_age_days` | number | `7` | How many days looked-up model prices are reused before the official pricing page is fetched again. |
+| `pricing.cache` | map | `{}` | Written by the assistant: per model id the prices in USD per million tokens (`input`, `output`, `cache_read`, `cache_write`) and the `checked` date, e.g. `claude-opus-5-5: {input: 4, output: 20, cache_read: 0.20, cache_write: 8, checked: 2026-10-31}`. |
 | `note.filename` | pattern | `YYYY-MM-DD {Topic}.md` | Filename pattern. |
 | `note.usage` | bool | `true` | Add the session usage / cost estimate section and frontmatter fields. |
 | `note.diagrams` | bool | `true` | Add Mermaid diagrams where they help understanding. |
@@ -60,6 +62,8 @@ obsidian-conversation-config:
     projects_root: "Projects"
     project_subfolder: "Conversations"
     known_projects: ["MyApp", "Writing", "Research"]
+  pricing:
+    max_age_days: 7
   note:
     filename: "YYYY-MM-DD {Topic}.md"
     usage: true

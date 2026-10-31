@@ -2,6 +2,12 @@
 
 All notable changes to this project are listed here. Versions follow [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-10-31
+
+### Changed
+- Cost estimates take model prices from the vendor's official pricing page only (Anthropic, OpenAI and Google pages listed), fetched directly instead of found through a web search.
+- Looked-up prices are reused for `pricing.max_age_days` days (default 7) from the new `pricing.cache` setting, so the page is fetched about once a week instead of for every note.
+
 ## [1.0.0] - 2026-09-28
 
 ### Added

@@ -155,7 +155,12 @@ Use the current local time in `timezone` (or the user's timezone from context). 
   - Tokens ≈ characters ÷ 4 for all text in the context, including tool results and files read.
   - Input tokens add up per model call, because every call re-sends the whole context. Output ≈ everything the assistant generated.
   - Prompt caching, when it applies, makes real cost much lower; say so.
-- Cost = tokens × the model's current API price per million tokens. Look the price up on the vendor's pricing page if you have web access and cite it. Otherwise give tokens only and write the cost as `unknown`.
+- Cost = tokens × the model's current API price per million tokens. **Take the prices from the vendor's official pricing page, never from third-party trackers:**
+    - Anthropic: https://platform.claude.com/docs/en/about-claude/pricing · OpenAI: https://openai.com/api/pricing · Google: https://ai.google.dev/gemini-api/docs/pricing. For other vendors, use a web search only to find their official page.
+    - **Reuse a recent lookup.** Prices rarely change. If `pricing.cache` in the configuration (or the assistant's memory) holds the model's prices with a `checked` date less than `pricing.max_age_days` (default 7) days old, use them and cite the page with that date.
+    - Otherwise fetch the page directly with a fetch tool (input, output, cache read and cache write prices). If the fetch tool is deferred or not yet loaded, load it first; "not loaded" does not count as "no web access". Then store the prices with today's date in `pricing.cache` where the configuration lives (memory or the config note), so the next notes can reuse them.
+    - Write the cost as `unknown` only after an actual fetch attempt failed, and say in the note which attempt failed.
+    - Price cached input at the cache-read rate and state the cache-hit share you assumed.
 - On a subscription plan, label the cost "API-equivalent".
 - Round and mark as estimates (e.g. ~180k tokens, ~$2.40).
 
@@ -314,6 +319,9 @@ obsidian-conversation-config:
     projects_root: ""
     project_subfolder: "Conversations"
     known_projects: []
+  pricing:
+    max_age_days: 7          # reuse looked-up prices for this many days
+    cache: {}                # filled in by the assistant: prices per model with the date checked
   note:
     filename: "YYYY-MM-DD {Topic}.md"
     usage: true
